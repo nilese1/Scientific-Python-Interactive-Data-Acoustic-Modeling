@@ -1,11 +1,11 @@
 ## Ethan Niles 11/20/2023 5:33
 Init repo and added the following files:
-    - setup.cfg
-    - requirements.txt
-    - spidam-gui.py
-    - model directory
-    - controller directory
-    - README.md
+    - setup.cfg \
+    - requirements.txt \
+    - spidam-gui.py \
+    - model directory \
+    - controller directory \
+    - README.md \
 
 ## Ethan Niles 11/20/2023 5:44
 Github doesn't add directories without files in them so added files to the directories
