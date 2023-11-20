@@ -6,3 +6,6 @@ Init repo and added the following files:
     - model directory
     - controller directory
     - README.md
+
+## Ethan Niles 11/20/2023 5:44
+Github doesn't add directories without files in them so added files to the directories
