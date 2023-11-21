@@ -25,19 +25,16 @@ def convert_to_wav(file):
 
 def prompt_audio_file():
     try:
-        temp = filedialog.askopenfile(mode='r')
+        imput = filedialog.askopenfile(mode='r')
     
     except FileNotFoundError:
         os.error('Incorrect File Given')
     
-    filename = temp.name
-    print(filename)
+    filename = input.name
     is_wav = filename.endswith('.wav')
 
     if not is_wav:
-        temp = convert_to_wav(temp)
+        input = convert_to_wav(input)
     
-    return temp
+    return input
 
-
-prompt_audio_file()
