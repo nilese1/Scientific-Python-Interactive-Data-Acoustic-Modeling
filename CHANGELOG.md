@@ -5,7 +5,10 @@ Init repo and added the following files:
     - spidam-gui.py \
     - model directory \
     - controller directory \
-    - README.md \
+    - README.md
 
 ## Ethan Niles 11/20/2023 5:44
 Github doesn't add directories without files in them so added files to the directories
+
+## Ethan Niles 11/21/2023 4:47
+Added loadfile.py module
