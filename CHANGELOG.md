@@ -12,3 +12,7 @@ Github doesn't add directories without files in them so added files to the direc
 
 ## Ethan Niles 11/21/2023 4:47
 Added loadfile.py module
+
+## Ethan Niles 11/22/2023 10:47
+Added getdata.py module \
+moved loadfile to the model directory
