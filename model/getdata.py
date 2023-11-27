@@ -1,6 +1,7 @@
 import os
 from scipy.io import wavfile
 import scipy.io
+import numpy as np
 
 os.path.basename('../model')
 
@@ -14,5 +15,5 @@ def get_data(file):
         return (0, [])
     
     samplerate, data = wavfile.read(file.name)
-    return samplerate, data[:, 0]
+    return samplerate, np.array(data[:, 0])
 
