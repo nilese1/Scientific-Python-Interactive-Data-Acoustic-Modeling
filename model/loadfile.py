@@ -5,11 +5,14 @@ from pydub import AudioSegment
 
 def convert_to_wav(file):
     # Import audio file
+
     try:
         audio = AudioSegment.from_file(file.name)
 
     except:
         os.error('Something has gone horribly wrong (maybe not an audio file?)')
+        print('Something has gone horribly wrong (maybe not an audio file?)')
+        return None
   
     # Create new filename
     new_filename = file.name.split('.')[0] + '.wav'

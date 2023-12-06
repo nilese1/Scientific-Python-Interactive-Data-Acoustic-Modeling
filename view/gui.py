@@ -1,7 +1,5 @@
 import tkinter as tk
-import sys
-sys.path.append("../model")
-import loadfile
+import controller.controller as control
 
 
 class View():
@@ -10,7 +8,7 @@ class View():
         mainFrame = tk.Frame(rootFrame)
         mainFrame.pack()
 
-        loadAudioBtnFrame = tk.Button(mainFrame, text="Load Audio File", command=loadfile.prompt_audio_file)
+        loadAudioBtnFrame = tk.Button(mainFrame, text="Load Audio File", command=control.LoadFilePressed)
         loadAudioBtnFrame.grid(row=0, column=0)
 
         seconds = tk.StringVar(value="Placeholder")
@@ -21,10 +19,10 @@ class View():
 
         # loadAudioBtnFrame.pack()
 
+def start():
+    rootFrame = tk.Tk()
 
-rootFrame = tk.Tk()
+    view = View(rootFrame)
 
-view = View(rootFrame)
-
-rootFrame.mainloop()
+    rootFrame.mainloop()
 
