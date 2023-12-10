@@ -29,6 +29,21 @@ class Controller:
         self.model.update(input)
         return input
 
+    def get_plot(self, mode):
+        # Waveform
+        if mode == 1:
+            return self.model.t, self.model.data
+        # Low Frequency
+        if mode == 2:
+            return self.model.t, self.model.frequency_data_db(200)
+        # Mid Frequency
+        if mode == 3:
+            return self.model.t, self.model.frequency_data_db(1000)
+        # High Frequency
+        if mode == 4:
+            return self.model.t, self.model.frequency_data_db(7500)
+
+
     def get_specgram(self):
         return self.model.specgram
 

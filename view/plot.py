@@ -35,6 +35,9 @@ class TkPlot:
         self.x = x
         self.y = y
 
+        self.graph = Figure(figsize=(3.5, 3), dpi=100)
+        self.graph1 = self.graph.add_subplot(111)
+
         self.display()
 
     def destroy(self):
