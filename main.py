@@ -1,5 +1,5 @@
 from view.gui import View
-import model.model as mdl
+from model.model import Model
 from controller.controller import Controller
 import tkinter as tk
 
@@ -9,7 +9,7 @@ def start():
     rootFrame = tk.Tk()
     
     view = View(rootFrame)
-    model = mdl.Model()
+    model = Model()
     controller = Controller(model, view)
     view.set_controller(controller)
 

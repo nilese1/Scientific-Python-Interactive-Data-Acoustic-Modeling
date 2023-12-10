@@ -6,7 +6,7 @@ from pydub import AudioSegment
 
 class Model:
     def __init__(self):
-        self.data = np.array() 
+        self.data = np.array([]) 
         self.samplerate = 0
 
     """
@@ -33,7 +33,7 @@ class Model:
     ##
     #   Exports a new wav file given a new audio file
     #
-    def convert_to_wav(file):
+    def convert_to_wav(self, file):
         # Import audio file
 
         try:
