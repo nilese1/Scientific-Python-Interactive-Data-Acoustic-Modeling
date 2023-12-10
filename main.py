@@ -7,10 +7,11 @@ import tkinter as tk
 # for testing purposes only
 def start():
     rootFrame = tk.Tk()
-    
-    view = View(rootFrame)
+
     model = Model()
-    controller = Controller(model, view)
+    controller = Controller(model)
+    view = View(rootFrame)
+    controller.set_view(view)
     view.set_controller(controller)
 
     rootFrame.mainloop()
