@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 
 class Model:
     def __init__(self):
-        self.data = np.array([]) 
+        self.data = np.array([])
         self.samplerate = 0
         self.spectrum = [[]]
-        self.freqs = []
+        self.freqs = []  # using low = 125, mid = 1k, high = 7.5k HZ
         self.t = [] # The times corresponding to midpoints of segments (i.e., the columns in spectrum)
         self.im = None # This won't be useful in the model 
 
@@ -35,7 +35,7 @@ class Model:
         self.data = data
         
         # unpack data using pyplot
-        self.spectrum, self.freqs, self.t, self.im = plt.specgram(data, Fs=samplerate, NFFT=1024) 
+        self.spectrum, self.freqs, self.t, self.im = plt.specgram(data, Fs=samplerate, NFFT=1024)
     
     ##
     #   Exports a new wav file given a new audio file
@@ -81,8 +81,8 @@ class Model:
 
         freq_data = self.spectrum[index]
 
-        convert_to_db = -10 * np.log10(freq_data, where=freq_data > 0)
-        # print(convert_to_db[:100])
+        convert_to_db = -10 * np.log10(freq_data, where=0 < freq_data)
+
         return convert_to_db
     
     ##

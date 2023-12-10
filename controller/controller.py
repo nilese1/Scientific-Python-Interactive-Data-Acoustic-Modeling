@@ -35,5 +35,12 @@ class Controller:
     def get_data(self):
         return self.model.data
 
-    def get_time(self):
+    def get_length_s(self):
         return self.model.t[-1]
+
+    def get_frequency_data_db(self, frequency):
+        return self.model.frequency_data_db(frequency)
+
+    def get_time(self):
+        return self.model.t
+

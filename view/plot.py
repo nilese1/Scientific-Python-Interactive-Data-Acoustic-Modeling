@@ -4,7 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 class TkPlot:
-    def __init__(self, master=None, x=None, y=[], sizex_in=3.5, sizey_in=3, labelx=None, labely=None):
+    def __init__(self, master=None, x=None, y=[], sizex_in=5, sizey_in=3, labelx=None, labely=None):
         self.master = master
 
         self.x = x
@@ -18,7 +18,7 @@ class TkPlot:
     def display(self):
         self.canvas.get_tk_widget().destroy()
 
-        if self.x:
+        if self.x is not None:
             self.graph1.plot(self.x, self.y)
         else:
             self.graph1.plot(self.y)
