@@ -17,5 +17,7 @@ Added loadfile.py module
 Added getdata.py module \
 moved loadfile to the model directory
 
-## Ethan Niles 12/10/2023 10:52
-Created methods for finding RT60 among other things
+## Ethan Niles 12/10/2023 10:51
+Created methods for finding RT60 among other things \
+added plot.py in view to streamline plot integration in the GUI \
+added waveform graph buttons

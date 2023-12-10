@@ -3,7 +3,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
-class tkPlot:
+class TkPlot:
     def __init__(self, master=None, x=None, y=[], sizex_in=3.5, sizey_in=3, labelx=None, labely=None):
         self.master = master
 
@@ -16,6 +16,8 @@ class tkPlot:
         self.canvas = FigureCanvasTkAgg(self.graph, master=self.master)
 
     def display(self):
+        self.canvas.get_tk_widget().destroy()
+
         if self.x:
             self.graph1.plot(self.x, self.y)
         else:

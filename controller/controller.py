@@ -28,3 +28,12 @@ class Controller:
         
         self.model.update(input)
         return input
+
+    def get_specgram(self):
+        return self.model.specgram
+
+    def get_data(self):
+        return self.model.data
+
+    def get_time(self):
+        return self.model.t[-1]
