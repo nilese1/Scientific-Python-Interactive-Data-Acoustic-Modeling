@@ -1,7 +1,5 @@
 import tkinter as tk
 from controller.controller import Controller
-# for testing purposes
-from model.model import Model
 
 
 class View():
