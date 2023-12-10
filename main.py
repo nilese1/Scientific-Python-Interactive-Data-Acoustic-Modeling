@@ -13,6 +13,12 @@ def start():
     view = View(rootFrame)
     controller.set_view(view)
     view.set_controller(controller)
+    
+    controller.prompt_audio_file() 
+
+    # test to find RT60
+    rt20 = model.find_reverb_time(20, 1000)
+    print(f'the rt60 is {rt20*3}')
 
     rootFrame.mainloop()
 
