@@ -14,6 +14,7 @@ class TkPlot:
         self.graph = Figure(figsize=(sizex_in, sizey_in), dpi=100)
         self.graph1 = self.graph.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.graph, master=self.master)
+        self.display()
 
     def display(self):
         self.canvas.get_tk_widget().destroy()
@@ -25,7 +26,7 @@ class TkPlot:
         
         self.canvas = FigureCanvasTkAgg(self.graph, master=self.master) # reinstates canvas to save memory
         self.canvas.draw()
-        self.canvas.get_tk_widget().pack()
+        self.canvas.get_tk_widget().grid(row=1, column=0)
 
     ##
     #   updates the coordinates and redisplays itself
