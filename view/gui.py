@@ -12,7 +12,7 @@ class View():
         mainFrame = tk.Frame(rootFrame)
         mainFrame.pack()
 
-        loadAudioBtnFrame = tk.Button(mainFrame, text="Load Audio File", command=self.controller.prompt_audio_file)
+        loadAudioBtnFrame = tk.Button(mainFrame, text="Load Audio File", command=self.load_button)
         loadAudioBtnFrame.grid(row=0, column=0)
 
         seconds = tk.StringVar(value="Placeholder")
@@ -22,6 +22,10 @@ class View():
 
 
         # loadAudioBtnFrame.pack()
+    
+    def load_button(self):
+        if self.controller:
+            self.controller.prompt_audio_file()
 
     def set_controller(self, controller):
         self.controller = controller

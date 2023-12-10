@@ -6,7 +6,7 @@ from pydub import AudioSegment
 
 class Model:
     def __init__(self):
-        self.data = np.array()
+        self.data = np.array([]) 
         self.samplerate = 0
 
     """
