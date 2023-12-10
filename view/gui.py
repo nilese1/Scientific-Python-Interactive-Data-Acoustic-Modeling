@@ -5,9 +5,9 @@ from model.model import Model
 
 
 class View():
-    def __init__(self, master=None):
+    def __init__(self, master=None, controller=None):
         rootFrame = master
-        self.controller = None
+        self.controller = controller
 
         mainFrame = tk.Frame(rootFrame)
         mainFrame.pack()

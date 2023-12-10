@@ -3,8 +3,11 @@ from tkinter import filedialog
 
 
 class Controller:
-    def __init__(self, model, view):
+    def __init__(self, model):
         self.model = model
+        self.view = None
+
+    def set_view(self, view):
         self.view = view
 
     ##
