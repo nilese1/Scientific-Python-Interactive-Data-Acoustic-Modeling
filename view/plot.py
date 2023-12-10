@@ -35,6 +35,7 @@ class TkPlot:
         self.x = x
         self.y = y
 
+        # Reset graph so they're not layered on top of eachother
         self.graph = Figure(figsize=(3.5, 3), dpi=100)
         self.graph1 = self.graph.add_subplot(111)
 
