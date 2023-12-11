@@ -1,5 +1,6 @@
 import os
 from scipy.io import wavfile
+from scipy.signal import welch
 import numpy as np
 from pydub import AudioSegment
 import matplotlib.pyplot as plt
@@ -13,6 +14,11 @@ class Model:
         self.freqs = []  # using low = 125, mid = 1k, high = 7.5k HZ
         self.t = [] # The times corresponding to midpoints of segments (i.e., the columns in spectrum)
         self.im = None # This won't be useful in the model 
+        
+        self.rt60_freqs = [200, 1000, 7500] # frequencies that will be searched through to find average
+        self.rt60 = 0
+
+        self.highest_resonance = 0
 
         
     ##
@@ -32,11 +38,17 @@ class Model:
     def update(self, file):
         samplerate, data = self.get_data(file)
         self.samplerate = samplerate
-        self.data = data
-        
+        self.data = data 
+
         # unpack data using pyplot
         self.spectrum, self.freqs, self.t, self.im = plt.specgram(data, Fs=samplerate, NFFT=1024)
-    
+
+        # find highest resonance frequency
+        frequencies, power = welch(data, samplerate, nperseg=4096)
+        self.highest_resonance = frequencies[np.argmax(power)]
+
+        self.rt60 = self.find_average_rt60()
+
     ##
     #   Exports a new wav file given a new audio file
     #
@@ -81,7 +93,7 @@ class Model:
 
         freq_data = self.spectrum[index]
 
-        convert_to_db = -10 * np.log10(freq_data, where=0 < freq_data)
+        convert_to_db = 10 * np.log10(freq_data, where=0 < freq_data)
 
         return convert_to_db
     
@@ -95,21 +107,32 @@ class Model:
         highest_db_index = np.argmax(data_db)
         highest_db_val = data_db[highest_db_index]
 
-        data_db = data_db[highest_db_index:]
+        sliced_db = data_db[highest_db_index:]
         
         # finding the value by an offset (which is 5 currently) for a more accurate solution
         offset = 5
-        highest_db_val = Model.find_nearest(data_db, highest_db_val - offset)
-        highest_db_index = np.where(data_db == highest_db_val)
+        highest_db_val_offset = Model.find_nearest(sliced_db, highest_db_val - offset)
+        highest_db_index_offset = np.where(data_db == highest_db_val)
 
         # looking for the nearest db drop equal to reduction_db
-        first_reduction = highest_db_val - reduction_db
-        first_reduction = Model.find_nearest(data_db, first_reduction)
+        first_reduction = highest_db_val - (reduction_db + offset)
+        first_reduction = Model.find_nearest(sliced_db, first_reduction)
 
         first_reduction_index = np.where(data_db == first_reduction)
+        
+        return (self.t[highest_db_index_offset] - self.t[first_reduction_index])[0]
+    
+    ##
+    #   finds the average rt20 then multilies by 3, getting the rt60
+    #
+    def find_average_rt60(self):
+        temp = 0
+        for i in self.rt60_freqs:
+            temp += self.find_reverb_time(20, i)
+        
+        avg_rt20 = temp / len(self.rt60_freqs)
+        return abs(avg_rt20 * 3)
 
-        # return the time it takes for db to drop
-        return (self.t[highest_db_index] - self.t[first_reduction_index])[0]
 
     ##
     #   Static method to find the nearest value in any integer array

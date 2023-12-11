@@ -23,7 +23,7 @@ class View():
         loadAudioBtn = tk.Button(buttonFrame, text="Load Audio File", command=self.load_button)
         loadAudioBtn.grid(row=0, column=0, pady=60)
 
-        self.seconds = tk.StringVar(value="No file loaded")
+        self.display_data = tk.StringVar(value="No file loaded")
         
 
         # plot waveform buttons
@@ -31,15 +31,13 @@ class View():
         waveform_frame.grid(row=0, column=1, padx=40)
         waveform_frame.config(bg="white")
 
-        secondsLabel = tk.Label(waveform_frame, textvariable=self.seconds)
-        secondsLabel.grid(row=0, column=0, pady=10)
-        secondsLabel.config(font=("Arial", 14), bg="white")
+        dataLabel = tk.Label(waveform_frame, textvariable=self.display_data)
+        dataLabel.grid(row=0, column=0, pady=10)
+        dataLabel.config(font=("Arial", 14), bg="white")
 
         self.waveform_graph = TkPlot(master=waveform_frame)
 
         waveform_display_button = tk.Button(buttonFrame, text='Load Plot', command=self.display_waveform)
-        waveform_destroy_button = tk.Button(buttonFrame, text='Destroy Waveform', command=self.waveform_graph.destroy)
-
         waveform_display_button.grid(row=1, column=0, pady=10)
 
         self.plotMode = tk.IntVar(buttonFrame, 1)
@@ -88,7 +86,10 @@ class View():
             return
         
         self.controller.prompt_audio_file()
-        self.seconds.set(f'File Duration: {round(self.controller.get_length_s(), 2)} seconds')
+        self.display_data.set(f'File Duration: {round(self.controller.get_length_s(), 2)} seconds\n' +
+                              f'Resonance Frequency: {round(self.controller.get_resonance(), 2)} Hz\n' +
+                              f'Difference: {self.controller.get_rt60() - .5} s')
+
         self.fileLoaded = True
 
     

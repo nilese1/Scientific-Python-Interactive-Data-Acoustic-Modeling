@@ -31,21 +31,18 @@ class Controller:
 
     def get_plot(self, mode):
         # Waveform
-        if mode == 1:
-            return self.model.t, self.model.data
-        # Low Frequency
-        if mode == 2:
-            return self.model.t, self.model.frequency_data_db(200)
-        # Mid Frequency
-        if mode == 3:
-            return self.model.t, self.model.frequency_data_db(1000)
-        # High Frequency
-        if mode == 4:
-            return self.model.t, self.model.frequency_data_db(7500)
-        if mode == 5:
-            return [[self.model.t, self.model.frequency_data_db(200)],
-                    [self.model.t, self.model.frequency_data_db(1000)],
-                    [self.model.t, self.model.frequency_data_db(7500)]]
+        match mode:
+            case 1:
+                return self.model.t, self.model.data
+            # Low Frequency
+            case 2:
+                return self.model.t, self.model.frequency_data_db(200)
+            # Mid Frequency
+            case 3:
+                return self.model.t, self.model.frequency_data_db(1000)
+            # High Frequency
+            case 4:
+                return self.model.t, self.model.frequency_data_db(7500)
 
 
     def get_specgram(self):
@@ -63,3 +60,8 @@ class Controller:
     def get_time(self):
         return self.model.t
 
+    def get_rt60(self):
+        return self.model.rt60
+
+    def get_resonance(self):
+        return self.model.highest_resonance
