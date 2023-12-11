@@ -47,7 +47,9 @@ class View():
                   "RT60 Low": 2,
                   "RT60 Mid": 3,
                   "RT60 High": 4,
-                  "Fast Fourier Transform": 5}
+                  "Combined": 5,
+                  "Fast Fourier Transform": 6}
+
         i = 2
         for (text, value) in values.items():
             tk.Radiobutton(buttonFrame, text=text, variable=self.plotMode,
@@ -98,11 +100,15 @@ class View():
         if not self.fileLoaded:
             return
 
-        x, y = self.controller.get_plot(self.plotMode.get())
-        if self.plotMode.get() == 1:
-            self.waveform_graph.update(y=y)
+        if self.plotMode.get() == 5:
+            input = self.controller.get_plot(5)
+            self.waveform_graph.stack_plots(input)
         else:
-            self.waveform_graph.update(x=x, y=y)
+            x, y = self.controller.get_plot(self.plotMode.get())
+            if self.plotMode.get() == 1:
+                self.waveform_graph.update(y=y)
+            else:
+                self.waveform_graph.update(x=x, y=y)
 
     def set_controller(self, controller):
         self.controller = controller
