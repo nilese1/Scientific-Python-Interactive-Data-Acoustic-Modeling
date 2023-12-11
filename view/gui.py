@@ -1,6 +1,7 @@
 import tkinter as tk
 from controller.controller import Controller
 from view.plot import TkPlot
+from scipy.fft import fft, fftfreq
 
 class View():
     def __init__(self, master=None, controller=None):
@@ -45,7 +46,8 @@ class View():
         values = {"Waveform": 1,
                   "RT60 Low": 2,
                   "RT60 Mid": 3,
-                  "RT60 High": 4}
+                  "RT60 High": 4,
+                  "Fast Fourier Transform": 5}
         i = 2
         for (text, value) in values.items():
             tk.Radiobutton(buttonFrame, text=text, variable=self.plotMode,
@@ -87,7 +89,7 @@ class View():
         self.controller.prompt_audio_file()
         self.display_data.set(f'File Duration: {round(self.controller.get_length_s(), 2)} seconds\n' +
                               f'Resonance Frequency: {round(self.controller.get_resonance(), 2)} Hz\n' +
-                              f'Difference: {self.controller.get_rt60() - .5} s')
+                              f'Difference: {round(self.controller.get_rt60() - .5, 2)} s')
 
         self.fileLoaded = True
 

@@ -20,4 +20,6 @@ moved loadfile to the model directory
 ## Ethan Niles 12/10/2023 10:51
 Created methods for finding RT60 among other things \
 added plot.py in view to streamline plot integration in the GUI \
-added waveform graph buttons
+added waveform graph buttons \
+added fourier transform button \
+added resonance and rt60
