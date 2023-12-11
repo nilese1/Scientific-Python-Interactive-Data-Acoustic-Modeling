@@ -1,7 +1,5 @@
 import tkinter as tk
-from controller.controller import Controller
 from view.plot import TkPlot
-from scipy.fft import fft, fftfreq
 
 class View():
     def __init__(self, master=None, controller=None):
@@ -59,29 +57,6 @@ class View():
         self.fileLoaded = False
 
         # Consolidated plots into radio button
-
-        #rt60Low_frame = tk.Frame(mainFrame)
-
-        #self.rt60Low_graph = TkPlot(master=rt60Low_frame)
-        #rt60Low_display_button = tk.Button(rt60Low_frame, text='Load RT60 Low Graph', command=self.get_plot_rt60_low)
-        #rt60Low_frame.grid(row=0, column=3)
-        #rt60Low_display_button.grid()
-
-        #rt60Mid_frame = tk.Frame(mainFrame)
-
-        #self.rt60Mid_graph = TkPlot(master=rt60Mid_frame)
-        #rt60Mid_display_button = tk.Button(rt60Mid_frame, text='Load RT60 Mid Graph',
-        #                            command=self.get_plot_rt60_mid)
-        #rt60Mid_frame.grid(row=1, column=3)
-        #rt60Mid_display_button.grid()
-
-        #rt60High_frame = tk.Frame(mainFrame)
-
-        #self.rt60High_graph = TkPlot(master=rt60High_frame)
-        #rt60High_display_button = tk.Button(rt60High_frame, text='Load RT60 High Graph',
-        #                            command=self.get_plot_rt60_high)
-        #rt60High_frame.grid(row=2, column=3)
-        #rt60High_display_button.grid()
     
     def load_button(self):
         if not self.controller:
@@ -110,20 +85,6 @@ class View():
             else:
                 self.waveform_graph.update(x=x, y=y)
 
-    def set_controller(self, controller):
-        self.controller = controller
-
-    def get_plot_rt60_low(self):
-        data = self.controller.get_frequency_data_db(200)
-        self.rt60Low_graph.update(x=self.controller.get_time(), y=data)
-
-    def get_plot_rt60_mid(self):
-        data = self.controller.get_frequency_data_db(1000)
-        self.rt60Mid_graph.update(x=self.controller.get_time(), y=data)
-
-    def get_plot_rt60_high(self):
-        data = self.controller.get_frequency_data_db(7500)
-        self.rt60High_graph.update(x=self.controller.get_time(), y=data)
 
 
 
