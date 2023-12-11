@@ -43,7 +43,11 @@ class Controller:
             # High Frequency
             case 4:
                 return self.model.t, self.model.frequency_data_db(7500)
-
+            # Combined Frequencies
+            case 5:
+                return [[self.model.t, self.model.frequency_data_db(200)],
+                    [self.model.t, self.model.frequency_data_db(1000)],
+                    [self.model.t, self.model.frequency_data_db(7500)]]
 
     def get_specgram(self):
         return self.model.specgram
