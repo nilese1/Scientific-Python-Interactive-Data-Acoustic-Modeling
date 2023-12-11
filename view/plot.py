@@ -42,6 +42,8 @@ class TkPlot:
         self.display()
 
     def stack_plots(self, inputs):
+        self.graph = Figure(figsize=(3.5, 3), dpi=100)
+        self.graph1 = self.graph.add_subplot(111)
         for i in inputs:
             self.update(x=i[0], y=i[1], reset=False)
 
