@@ -4,7 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 class TkPlot:
-    def __init__(self, master=None, x=None, y=[], sizex_in=5, sizey_in=3, labelx=None, labely=None):
+    def __init__(self, master=None, x=None, y=[], sizex_in=5.0, sizey_in=3.0, labelx=None, labely=None):
         self.master = master
 
         self.x = x
