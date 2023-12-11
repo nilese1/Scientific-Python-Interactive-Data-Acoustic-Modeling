@@ -10,9 +10,8 @@ def start():
 
     model = Model()
     controller = Controller(model)
-    view = View(rootFrame)
+    view = View(rootFrame, controller)
     controller.set_view(view)
-    view.set_controller(controller)
 
     rootFrame.mainloop()
 
