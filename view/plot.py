@@ -31,15 +31,21 @@ class TkPlot:
     ##
     #   updates the coordinates and redisplays itself
     #
-    def update(self, x=None, y=[]):
+    def update(self, x=None, y=[], reset=True):
         self.x = x
         self.y = y
 
         # Reset graph so they're not layered on top of eachother
-        self.graph = Figure(figsize=(3.5, 3), dpi=100)
-        self.graph1 = self.graph.add_subplot(111)
+        if reset:
+            self.graph = Figure(figsize=(3.5, 3), dpi=100)
+            self.graph1 = self.graph.add_subplot(111)
 
         self.display()
+
+    def stack_plots(self, inputs):
+        for i in inputs:
+            self.update(x=i[0], y=i[1], reset=False)
+
 
     def destroy(self):
         self.canvas.get_tk_widget().destroy()

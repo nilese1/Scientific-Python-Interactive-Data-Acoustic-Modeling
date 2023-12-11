@@ -47,17 +47,13 @@ class View():
         values = {"Waveform": 1,
                   "RT60 Low": 2,
                   "RT60 Mid": 3,
-                  "RT60 High": 4}
+                  "RT60 High": 4,
+                  "Combined": 5}
         i = 2
         for (text, value) in values.items():
             tk.Radiobutton(buttonFrame, text=text, variable=self.plotMode,
                         value=value).grid(row=i, column=0, pady=5)
             i += 1
-
-
-
-
-        waveform_destroy_button.grid(row=6, column=0, pady=10)
 
         self.fileLoaded = False
 
@@ -100,11 +96,15 @@ class View():
         if not self.fileLoaded:
             return
 
-        x, y = self.controller.get_plot(self.plotMode.get())
-        if self.plotMode.get() == 1:
-            self.waveform_graph.update(y=y)
+        if self.plotMode.get() == 5:
+            input = self.controller.get_plot(5)
+            self.waveform_graph.stack_plots(input)
         else:
-            self.waveform_graph.update(x=x, y=y)
+            x, y = self.controller.get_plot(self.plotMode.get())
+            if self.plotMode.get() == 1:
+                self.waveform_graph.update(y=y)
+            else:
+                self.waveform_graph.update(x=x, y=y)
 
     def set_controller(self, controller):
         self.controller = controller

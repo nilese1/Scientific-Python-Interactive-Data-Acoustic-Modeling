@@ -42,6 +42,10 @@ class Controller:
         # High Frequency
         if mode == 4:
             return self.model.t, self.model.frequency_data_db(7500)
+        if mode == 5:
+            return [[self.model.t, self.model.frequency_data_db(200)],
+                    [self.model.t, self.model.frequency_data_db(1000)],
+                    [self.model.t, self.model.frequency_data_db(7500)]]
 
 
     def get_specgram(self):
